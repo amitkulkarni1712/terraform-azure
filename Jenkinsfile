@@ -21,7 +21,7 @@ pipeline {
                 tenantIdVariable: 'ARM_TENANT_ID')]) {
                         sh """
                         echo "Creating Terraform Plan"
-                        terraform plan -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID -out=tfplan -input=false -var-file='terraform.tfvars"
+                        terraform plan -out=tfplan -input=false -var-file='terraform.tfvars'"
                         """
                         }
                 }
