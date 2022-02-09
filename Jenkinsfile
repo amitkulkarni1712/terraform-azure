@@ -70,7 +70,7 @@ pipeline {
             }
         }
     }
-}
+
 /*    stage('Terraform Apply') {
       steps {
         input 'Apply Plan'
