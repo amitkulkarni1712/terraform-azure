@@ -25,7 +25,7 @@ pipeline {
         }
     
 
-    stage('Terraform Plan & Destroy') {
+    stage('Terraform Apply & Destroy') {
             steps {
                withCredentials([azureServicePrincipal(
                 credentialsId: '72638069-0faa-468f-8b96-bcc88be5343f',
@@ -33,7 +33,7 @@ pipeline {
                 clientIdVariable: 'ARM_CLIENT_ID',
                 clientSecretVariable: 'ARM_CLIENT_SECRET',
                 tenantIdVariable: 'ARM_TENANT_ID')]) {
-                        sh "terraform apply tfplan --auto-approve && sleep 600 && terraform destroy --auto-approve" 
+                        sh "terraform apply -input=false -auto-approve "tfplan" && sleep 600 && terraform destroy --auto-approve" 
                         }
                 }
         }
