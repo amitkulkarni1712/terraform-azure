@@ -20,3 +20,5 @@ pipeline {
         sh "${env.TERRAFORM_HOME}/terraform apply -input=false tfplan"
       }
     }
+    }
+}
