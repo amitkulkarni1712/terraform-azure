@@ -33,7 +33,7 @@ pipeline {
                 clientIdVariable: 'ARM_CLIENT_ID',
                 clientSecretVariable: 'ARM_CLIENT_SECRET',
                 tenantIdVariable: 'ARM_TENANT_ID')]) {
-                        sh "terraform apply -input=false -auto-approve "tfplan" && sleep 600 && terraform destroy --auto-approve" 
+                        sh terraform apply -input=false -auto-approve "tfplan" && sleep 600 && terraform destroy --auto-approve
                         }
                 }
         }
