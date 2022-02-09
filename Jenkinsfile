@@ -14,6 +14,8 @@ pipeline {
         sh "terraform plan -out=tfplan -input=false -var-file='dev.tfvars'"
       }
     }
+    }
+}
 /*    stage('Terraform Apply') {
       steps {
         input 'Apply Plan'
