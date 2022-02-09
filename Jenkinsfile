@@ -4,22 +4,19 @@ pipeline {
         terraform 'terraform'
     }
     stages {
-        stage('Terraform Init') {
-            steps {
-                sh 'terraform init'
-            }
-        }
-
-        stage('Apply') {
-            steps {
-                sh "terraform apply --auto-approve"
-            }
-        }
+    stage('Terraform Init') {
+      steps {
+        sh "${env.TERRAFORM_HOME}/terraform init -input=false"
+      }
     }
-
-    post {
-        always {
-            archiveArtifacts artifacts: 'tfplan.txt'
-        }
+    stage('Terraform Plan') {
+      steps {
+        sh "${env.TERRAFORM_HOME}/terraform plan -out=tfplan -input=false -var-file='dev.tfvars'"
+      }
     }
-}
+    stage('Terraform Apply') {
+      steps {
+        input 'Apply Plan'
+        sh "${env.TERRAFORM_HOME}/terraform apply -input=false tfplan"
+      }
+    }
