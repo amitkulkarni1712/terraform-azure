@@ -11,14 +11,12 @@ pipeline {
     }
     stage('Terraform Plan') {
       steps {
-        withCredentials([azureServicePrincipal(
-                    credentialsId: '72638069-0faa-468f-8b96-bcc88be5343f',
-                    subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
-                    clientIdVariable: 'ARM_CLIENT_ID',
-                    clientSecretVariable: 'ARM_CLIENT_SECRET',
-                    tenantIdVariable: 'ARM_TENANT_ID'
-                )
-        sh 'az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET -t $ARM_TENANT_ID'
+        withCredentials([azureServicePrincipal(credentialsId: '72638069-0faa-468f-8b96-bcc88be5343f',
+                                    subscriptionIdVariable: 'SUBS_ID',
+                                    clientIdVariable: 'CLIENT_ID',
+                                    clientSecretVariable: 'CLIENT_SECRET',
+                                    tenantIdVariable: 'TENANT_ID')]) {
+        sh 'az login --service-principal -u $CLIENT_ID -p $CLIENT_SECRET -t $TENANT_ID'
     }  
         sh "terraform plan -out=tfplan -input=false -var-file='terraform.tfvars'"
       }
