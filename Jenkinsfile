@@ -8,7 +8,7 @@ pipeline {
         stage('Terraform Init'){
             
             steps {
-                    {
+                
                     withCredentials([azureServicePrincipal(
                     credentialsId: 'Jenkins',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
@@ -23,14 +23,14 @@ pipeline {
                         terraform init -backend-config="access_key=$ARM_ACCESS_KEY"
                         """
                            }
-                    }
+                    
              }
         }
 
         stage('Terraform Validate'){
             
             steps {
-                    {
+                    
                     withCredentials([azureServicePrincipal(
                     credentialsId: '72638069-0faa-468f-8b96-bcc88be5343f',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
@@ -44,14 +44,14 @@ pipeline {
                         terraform validate
                         """
                            }
-                    }
+                    
              }
         }
 
         stage('Terraform Plan'){
             steps {
 
-                    {
+                    
                     withCredentials([azureServicePrincipal(
                     credentialsId: '72638069-0faa-468f-8b96-bcc88be5343f',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
