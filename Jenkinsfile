@@ -21,7 +21,7 @@ pipeline {
                 tenantIdVariable: 'ARM_TENANT_ID')]) {
                         sh """
                         echo "Creating Terraform Plan"
-                        "terraform plan -out=tfplan -input=false -var-file='terraform.tfvars'"
+                        "terraform plan -input=false -var-file='terraform.tfvars'"
                         """
                         }
                 }
