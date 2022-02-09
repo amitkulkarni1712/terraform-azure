@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Terraform Plan') {
       steps {
-        withCredentials([azureServicePrincipal(credentialsId: 'AzureServicePrincipal',
+        withCredentials([azureServicePrincipal(credentialsId: '72638069-0faa-468f-8b96-bcc88be5343f',
                                     subscriptionIdVariable: 'SUBS_ID',
                                     clientIdVariable: 'CLIENT_ID',
                                     clientSecretVariable: 'CLIENT_SECRET',
