@@ -75,7 +75,7 @@ resource "azurerm_virtual_machine" "app-vm" {
   resource_group_name = var.resource_group
   network_interface_ids = [ azurerm_network_interface.app-net-interface.id ]
   availability_set_id = azurerm_availability_set.web_availabilty_set.id
-  vm_size = "Standard_D2s_v3"
+  vm_size = "Standard_B1s"
   delete_os_disk_on_termination = true
   
   storage_image_reference {
