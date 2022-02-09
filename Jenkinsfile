@@ -19,10 +19,7 @@ pipeline {
                 clientIdVariable: 'ARM_CLIENT_ID',
                 clientSecretVariable: 'ARM_CLIENT_SECRET',
                 tenantIdVariable: 'ARM_TENANT_ID')]) {
-                        sh """
-                        echo "Creating Terraform Plan"
-                        "terraform plan -input=false -var-file='terraform.tfvars'"
-                        """
+                        sh "terraform plan -out=tfplan -input=false -var-file='terraform.tfvars'"
                         }
                 }
             }
